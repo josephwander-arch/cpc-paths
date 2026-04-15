@@ -1,0 +1,23 @@
+[package]
+name = "cpc-paths"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Portable path discovery for CPC MCP servers"
+repository = "https://github.com/josephwander-arch/cpc-paths"
+readme = "README.md"
+keywords = ["cpc", "mcp", "path", "config"]
+categories = ["filesystem", "config"]
+rust-version = "1.75"
+
+[dependencies]
+anyhow = "1"
+chrono = { version = "0.4", features = ["serde"] }
+directories = "5"
+once_cell = "1"
+serde = { version = "1", features = ["derive"] }
+thiserror = "1"
+toml = "0.8"
+
+[dev-dependencies]
+tempfile = "3"
