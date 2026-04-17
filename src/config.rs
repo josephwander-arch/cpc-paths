@@ -58,8 +58,7 @@ pub fn write_config_key(
 
     cfg.metadata.schema_version = Some(1);
     cfg.metadata.last_updated = Some(Utc::now().to_rfc3339());
-    cfg.metadata.last_updated_by =
-        Some(format!("cpc-paths v{}", env!("CARGO_PKG_VERSION")));
+    cfg.metadata.last_updated_by = Some(format!("cpc-paths v{}", env!("CARGO_PKG_VERSION")));
 
     // Ensure parent dir exists.
     if let Some(parent) = config_file.parent() {
@@ -78,7 +77,11 @@ pub fn write_config_key(
 pub fn config_volumes(cfg: &CpcConfig) -> Option<PathBuf> {
     cfg.paths.volumes.as_ref().and_then(|s| {
         let p = PathBuf::from(s);
-        if p.exists() { Some(p) } else { None }
+        if p.exists() {
+            Some(p)
+        } else {
+            None
+        }
     })
 }
 
@@ -86,7 +89,11 @@ pub fn config_volumes(cfg: &CpcConfig) -> Option<PathBuf> {
 pub fn config_install(cfg: &CpcConfig) -> Option<PathBuf> {
     cfg.paths.install.as_ref().and_then(|s| {
         let p = PathBuf::from(s);
-        if p.exists() { Some(p) } else { None }
+        if p.exists() {
+            Some(p)
+        } else {
+            None
+        }
     })
 }
 
@@ -94,6 +101,10 @@ pub fn config_install(cfg: &CpcConfig) -> Option<PathBuf> {
 pub fn config_backups(cfg: &CpcConfig) -> Option<PathBuf> {
     cfg.paths.backups.as_ref().and_then(|s| {
         let p = PathBuf::from(s);
-        if p.exists() { Some(p) } else { None }
+        if p.exists() {
+            Some(p)
+        } else {
+            None
+        }
     })
 }

@@ -14,8 +14,7 @@
 ///   machine state
 use cpc_paths::{self, ConfigKey, ResolutionMethod};
 use std::{
-    env,
-    fs,
+    env, fs,
     path::PathBuf,
     sync::{Mutex, MutexGuard},
 };
@@ -90,7 +89,10 @@ fn autodetect_when_no_config() {
     // We just verify: succeeds with a path OR fails with an actionable error.
     match cpc_paths::volumes_path() {
         Ok(p) => {
-            assert!(!p.as_os_str().is_empty(), "auto-detect returned a non-empty path");
+            assert!(
+                !p.as_os_str().is_empty(),
+                "auto-detect returned a non-empty path"
+            );
         }
         Err(e) => {
             let msg = e.to_string();
@@ -136,7 +138,11 @@ fn invalidate_cache_forces_reresolve() {
     env::set_var("CPC_VOLUMES_PATH", vol_dir2.path());
     cpc_paths::invalidate_cache();
     let second = cpc_paths::volumes_path().expect("second resolve");
-    assert_eq!(second, vol_dir2.path(), "should pick up new env var after invalidate");
+    assert_eq!(
+        second,
+        vol_dir2.path(),
+        "should pick up new env var after invalidate"
+    );
 }
 
 // ---------------------------------------------------------------------------
@@ -150,7 +156,10 @@ fn non_interactive_returns_error_on_no_candidates() {
 
     // No env var, no config file, no candidates → Error::NotFound.
     let err = cpc_paths::volumes_path();
-    assert!(err.is_err(), "zero candidates (non-interactive) must return error");
+    assert!(
+        err.is_err(),
+        "zero candidates (non-interactive) must return error"
+    );
     let msg = err.unwrap_err().to_string();
     assert!(
         msg.contains("CPC_VOLUMES_PATH") || msg.contains("not found"),
@@ -234,7 +243,10 @@ fn health_check_reports_resolution_method() {
         report.volumes.resolved_via
     );
     assert!(report.volumes.path.is_some(), "volumes path should be Some");
-    assert!(!report.crate_version.is_empty(), "crate_version should be set");
+    assert!(
+        !report.crate_version.is_empty(),
+        "crate_version should be set"
+    );
     assert!(
         matches!(report.platform.as_str(), "windows" | "macos" | "linux"),
         "platform should be a known string: {}",

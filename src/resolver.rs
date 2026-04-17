@@ -1,8 +1,7 @@
 use crate::{
     config::{read_config, write_config_key},
     error::Error,
-    platform,
-    ConfigKey, ResolutionMethod,
+    platform, ConfigKey, ResolutionMethod,
 };
 use anyhow::Result;
 use once_cell::sync::Lazy;
@@ -117,10 +116,7 @@ pub fn resolve(desc: &PathDescriptor) -> Result<(PathBuf, ResolutionMethod)> {
         0 => {
             // 5a. Interactive prompt.
             if io::stdin().is_terminal() {
-                eprint!(
-                    "{} path not found. Enter path: ",
-                    desc.name
-                );
+                eprint!("{} path not found. Enter path: ", desc.name);
                 let mut input = String::new();
                 io::stdin().read_line(&mut input)?;
                 let p = PathBuf::from(input.trim());
@@ -175,10 +171,7 @@ pub fn resolve(desc: &PathDescriptor) -> Result<(PathBuf, ResolutionMethod)> {
 
 fn store_cache(key: ConfigKey, path: PathBuf, method: ResolutionMethod) {
     let mut cache = CACHE.lock().expect("cache lock poisoned");
-    let entry = CacheEntry {
-        path,
-        method,
-    };
+    let entry = CacheEntry { path, method };
     match key {
         ConfigKey::VolumesPath => cache.volumes = Some(entry),
         ConfigKey::InstallPath => cache.install = Some(entry),
