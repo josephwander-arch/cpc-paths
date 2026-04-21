@@ -2,7 +2,7 @@
 
 Portable path discovery for CPC MCP servers. Resolves install, volumes, and per-server data directories with consistent precedence and a hard no-prompt guarantee when stdin is not a tty (critical for MCP servers running stdio).
 
-**Part of [CPC](https://github.com/josephwander-arch) (Cognitive Performance Computing)** — a multi-agent AI orchestration system built on Claude + MCP (Model Context Protocol). Related repos: [manager](https://github.com/josephwander-arch/manager) · [local](https://github.com/josephwander-arch/local) · [hands](https://github.com/josephwander-arch/hands) · [workflow](https://github.com/josephwander-arch/workflow) · [cpc-breadcrumbs](https://github.com/josephwander-arch/cpc-breadcrumbs)
+**Part of [CPC](https://github.com/josephwander-arch) (Copy Paste Compute)** — a multi-agent AI orchestration system built on Claude + MCP (Model Context Protocol). Related repos: [manager](https://github.com/josephwander-arch/manager) · [local](https://github.com/josephwander-arch/local) · [hands](https://github.com/josephwander-arch/hands) · [workflow](https://github.com/josephwander-arch/workflow) · [cpc-breadcrumbs](https://github.com/josephwander-arch/cpc-breadcrumbs)
 
 This crate is a dependency of CPC's MCP server binaries — most users won't install it directly; it's pulled in automatically via git tag when you build a CPC server from source.
 
